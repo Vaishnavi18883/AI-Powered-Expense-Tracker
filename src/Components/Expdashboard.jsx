@@ -1,19 +1,19 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 
-const Incomedashboard = () => {
+const Expdashboard = () => {
   return (
     <div>
-      <div className="flex h-screen bg-gray-100">
-        <Sidebar />
+        <div className="flex h-screen bg-gray-100">
+        <Sidebar/>
         <div className="flex flex-col flex-1">
           {/* header */}
           <header className="bg-white shadow p-4 flex justify-between items-center">
-            <h1 className="text-lg font-semibold">Income Dashboard</h1>
+            <h1 className="text-lg font-semibold">Expenses Dashboard</h1>
           </header>
           {/* Content */}
           <main className="p-6 flex-1 overflow-y-auto">
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-4 gap-3">
 
               {/* Cards */}
               <div className="bg-white p-4 rounded shadow">
@@ -22,9 +22,14 @@ const Incomedashboard = () => {
               </div>
 
               <div className="bg-white p-4 rounded shadow">
-                <h3 className="font-semibold">No Of Income</h3>
-                <p className="text-2xl mt-2">2</p>
+                <h3 className="font-semibold">Total Expenses</h3>
+                <p className="text-2xl mt-2">₹110002</p>
               </div>
+              <div className="bg-white p-4 rounded shadow">
+                <h3 className="font-semibold">Remaining Amount</h3>
+                <p className="text-2xl mt-2">₹110002</p>
+              </div>
+
 
               <div className="flex flex-col p-4 rounded-lg gap-4 w-48">
                 <button className="bg-gray-600 text-white py-2 rounded-md 
@@ -32,14 +37,14 @@ const Incomedashboard = () => {
                    
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Add Income
+                  Add Expense
                 </button>
 
                 <button className="bg-blue-500 text-white py-2 rounded-md 
                      hover:bg-blue-600 
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Show Incomes
+                  Show Expenses
                 </button>
               </div>
 
@@ -59,4 +64,4 @@ const Incomedashboard = () => {
   )
 }
 
-export default Incomedashboard
+export default Expdashboard
