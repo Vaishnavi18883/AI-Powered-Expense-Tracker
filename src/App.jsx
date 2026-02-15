@@ -9,6 +9,7 @@ import Addexp from './Pages/Addexp'
 import Incomedashboard from './Components/Incomedashboard'
 import Expdashboard from './Components/Expdashboard'
 import Categories from './Pages/Categories'
+import Showallincomes from './Pages/Showallincomes'
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
           <Route path='/incomedashboard' element= {<Incomedashboard/>}></Route>
           <Route path='/expenesdashboard' element={<Expdashboard/>}></Route>
          <Route path='/categories' element={<Categories/>}></Route>
-      
+         <Route path='/showallincome' element={<Showallincomes/>}></Route>
+
       </Routes>
       </Router>
      

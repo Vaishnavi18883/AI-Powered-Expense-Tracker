@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import { Link } from 'react-router-dom'
 
 const Incomedashboard = () => {
   return (
@@ -32,14 +33,14 @@ const Incomedashboard = () => {
                    
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Add Income
+                 <Link to='/add-income'>Add Income</Link> 
                 </button>
 
                 <button className="bg-blue-500 text-white py-2 rounded-md 
                      hover:bg-blue-600 
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Show Incomes
+                 <Link to='/showallincome'>Show Incomes</Link>
                 </button>
               </div>
 

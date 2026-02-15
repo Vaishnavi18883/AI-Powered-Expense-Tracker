@@ -1,22 +1,24 @@
 import { useState } from "react";
 import Sidebar from "../Components/Sidebar";
+import { FaMoneyBillWave, FaBriefcase, FaChartLine } from "react-icons/fa";
+import { MdFastfood, MdHome, MdTravelExplore, MdShoppingCart, MdReceipt } from "react-icons/md";
+
 
 const Categories = () => {
   const [activeTab, setActiveTab] = useState("income");
 
   const incomeCategories = [
-    { title: "Salary", description: "Monthly income from job." },
-    { title: "Freelancing", description: "Projects and contract work." },
-    { title: "Business", description: "Profit from business." },
-    { title: "Investments", description: "Returns from stocks & mutual funds." },
+    { title: "Salary", description: "Monthly income from job.",icon: <FaMoneyBillWave className="text-green-500 text-2xl"/>},
+    { title: "Business", description: "Profit from business.",icon: <FaBriefcase className="text-blue-500 text-2xl" />},
+    { title: "Investments", description: "Returns from stocks & mutual funds.", icon: <FaChartLine className="text-purple-500 text-2xl" /> },
   ];
 
   const expenseCategories = [
-    { title: "Food", description: "Groceries and dining expenses." },
-    { title: "Rent", description: "House rent or accommodation." },
-    { title: "Travel", description: "Transport and trip expenses." },
-    { title: "Shopping", description: "Clothes, gadgets, etc." },
-    { title: "Bills", description: "Electricity, water, internet." },
+    { title: "Food", description: "Groceries and dining expenses.", icon: <MdFastfood className="text-red-500 text-2xl" /> },
+    { title: "Rent", description: "House rent or accommodation.",icon: <MdHome className="text-yellow-500 text-2xl" />},
+    { title: "Travel", description: "Transport and trip expenses.", icon: <MdTravelExplore className="text-indigo-500 text-2xl" /> },
+    { title: "Shopping", description: "Clothes, gadgets, etc.", icon: <MdShoppingCart className="text-pink-500 text-2xl" />},
+    { title: "Bills", description: "Electricity, water, internet.", icon: <MdReceipt className="text-gray-500 text-2xl" />},
   ];
 
   const categories =
@@ -63,12 +65,15 @@ const Categories = () => {
             key={index}
             className="p-4 border rounded-xl shadow hover:shadow-lg transition duration-300"
           >
+            <div>{item.icon}</div>
+
             <h3 className="text-lg font-semibold text-gray-800">
               {item.title}
             </h3>
             <p className="text-sm text-gray-600 mt-2">
               {item.description}
             </p>
+            
           </div>
         ))}
       </div>

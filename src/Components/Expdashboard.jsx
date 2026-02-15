@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import { Link } from 'react-router-dom'
 
 const Expdashboard = () => {
   return (
@@ -37,14 +38,14 @@ const Expdashboard = () => {
                    
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Add Expense
+                  <Link to={'/add-expenses'}>Add Expense</Link>
                 </button>
 
                 <button className="bg-blue-500 text-white py-2 rounded-md 
                      hover:bg-blue-600 
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Show Expenses
+                  <Link to={'/show-all-expenses'}>Show Expenses</Link>
                 </button>
               </div>
 

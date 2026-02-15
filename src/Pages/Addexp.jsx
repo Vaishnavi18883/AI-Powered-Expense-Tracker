@@ -20,7 +20,7 @@ const Addexp = () => {
                             placeholder="Expense Name"
                             className="px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-current-color"
                         />
-
+                   
 
                         <label className="text-sm font-medium text-white">
                             Description
