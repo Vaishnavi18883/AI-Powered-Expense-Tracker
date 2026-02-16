@@ -45,7 +45,7 @@ const Expdashboard = () => {
                      hover:bg-blue-600 
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  <Link to={'/show-all-expenses'}>Show Expenses</Link>
+                  Show Expenses
                 </button>
               </div>
 
