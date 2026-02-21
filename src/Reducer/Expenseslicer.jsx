@@ -3,23 +3,18 @@ import { createSlice } from "@reduxjs/toolkit"
 
 
 
-const initialState= {
-    expenses :[],
+
+const initialState1 ={
+    expenses :[]
 }
 
-const expenseSlice = createSlice({
+const expenseslice = createSlice({
     name : "expensesdata",
-    initialState,
-    reducers:{
-        addExpense: (state,action)=>{
-            const newExpense ={
-                id: Date.now(),
-                ...action.payload
-            }
-            state.expenses.push(newExpense)
-        }
-    }
+    initialState1,
+
 })
 
-export const{addExpense}= expenseSlice.actions;
-export default expenseSlice.reducer
+
+
+
+export default expenseslice.reducer;
