@@ -25,6 +25,8 @@ const Addexp = () => {
 
     const handleChange =(e)=>{
         setFormData({
+           
+            
             ...formData,
             [e.target.name]:e.target.value
         })
@@ -33,6 +35,7 @@ const Addexp = () => {
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
+         console.log(formData);
         dispatch(addExpense({
             ...formData,
             amount:Number(formData.amount)

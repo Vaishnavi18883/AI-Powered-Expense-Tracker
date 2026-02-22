@@ -1,11 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { deleteExpense } from "../Reducer/Expenseslicer";
 
 const ShowExpenses = () => {
-    const expenseData = useSelector((state)=>state.expensesdata.expenses);
-    const navigate = useNavigate()
+  const expenseData = useSelector((state) => state.expensesdata.expenses);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleDelete = (id)=>{
+    dispatch(deleteExpense(id));
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
@@ -29,56 +35,58 @@ const ShowExpenses = () => {
             </button>
           </div>
 
-          <div className="space-y-4">
-            {expenseData.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15 }}
-                whileHover={{ scale: 1.02 }}
-                className="flex justify-between items-center bg-red-50 p-4 rounded-xl shadow-sm"
-              >
-                
-               
-                <div>
-                  <h3 className="font-semibold text-gray-800">
-                    {item.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    {item.description}
-                  </p>
-                </div>
+         <div className="space-y-4">
+  {expenseData.length === 0 ? (
+    <p className="text-center text-gray-500 py-6">
+      No expenses added yet.
+    </p>
+  ) : (
+    expenseData.map((item, index) => (
+      <motion.div
+        key={item.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.15 }}
+        whileHover={{ scale: 1.02 }}
+        className="flex justify-between items-center bg-red-50 p-4 rounded-xl shadow-sm"
+      >
+        <div>
+          <h3 className="font-semibold text-gray-800">
+            {item.name}
+          </h3>
+          <p className="text-sm text-gray-500">
+            {item.description}
+          </p>
+        </div>
 
-                {/* Right */}
-                <div className="flex items-center gap-6">
-                  
-                  <p className="text-red-600 font-bold text-lg">
-                    ₹{item.amount}
-                  </p>
+        <div className="flex items-center gap-6">
+          <p className="text-red-600 font-bold text-lg">
+            ₹{item.amount}
+          </p>
 
-                  <div className="flex gap-2">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg"
-                    >
-                      Edit
-                    </motion.button>
+          <div className="flex gap-2">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg"
+            >
+              Edit
+            </motion.button>
 
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1 text-sm bg-red-500 text-white rounded-lg"
-                    >
-                      Delete
-                    </motion.button>
-                  </div>
-
-                </div>
-              </motion.div>
-            ))}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-3 py-1 text-sm bg-red-500 text-white rounded-lg"
+              onClick={()=> handleDelete(item.id)}
+            >
+              Delete
+            </motion.button>
           </div>
+        </div>
+      </motion.div>
+    ))
+  )}
+</div>
 
         </div>
       </div>
