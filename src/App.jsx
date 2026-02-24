@@ -24,6 +24,7 @@ const App = () => {
           <Route path='/add-income' element= {<Addincome/>}></Route>
           <Route path='/edit-income/:id' element={<Addincome/>} ></Route>
           <Route path='/add-expenses' element={<Addexp/>}></Route>
+          <Route path= '/edit-expenses/:id' element= {<Addexp/>}></Route>
           <Route path='/incomedashboard' element= {<Incomedashboard/>}></Route>
           <Route path='/expenesdashboard' element={<Expdashboard/>}></Route>
          <Route path='/categories' element={<Categories/>}></Route>

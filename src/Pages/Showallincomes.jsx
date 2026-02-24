@@ -21,14 +21,14 @@ const ShowIncome = () => {
 
  }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white p-6">
+    <div className="min-h-screen bg-[url('https://c1.wallpaperflare.com/preview/969/336/23/money-finance-business-financial.jpg')] bg-cover bg-center p-6">
       <div className="max-w-5xl mx-auto">
 
         <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Income Overview
         </h1>
 
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="bg-white/20 backdrop-blur-sm rounded-2xl shadow-md p-6">
 
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-gray-800">
@@ -48,7 +48,7 @@ const ShowIncome = () => {
                 animate={{ opacity: 1, y: 2 }}
                 transition={{ delay: index * 0.30 }}
                 whileHover={{ scale: 1.03 }}
-                className="flex justify-between items-center bg-green-50 p-4 rounded-xl shadow-sm"
+                className="flex justify-between items-center bg-green-50/40 p-4 rounded-xl shadow-sm"
               >
 
                 {/* Left Section */}

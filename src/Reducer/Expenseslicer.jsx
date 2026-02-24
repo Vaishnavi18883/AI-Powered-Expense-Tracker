@@ -25,6 +25,13 @@ const expenseslice = createSlice({
         deleteExpense : (state,action)=>{
             state.expenses = state.expenses.filter(expense => expense.id!== action.payload);
 
+        },
+        editExpense :(state,action)=>{
+           const index = state.expenses.findIndex(
+            expense => expense.id === action.payload.id);
+           if(index !== -1){
+            state.expenses[index]= action.payload;
+           }
         }
         
     }
@@ -33,5 +40,5 @@ const expenseslice = createSlice({
 
 
 
-export const {addExpense, deleteExpense} = expenseslice.actions;
+export const {addExpense, deleteExpense,editExpense} = expenseslice.actions;
 export default expenseslice.reducer;

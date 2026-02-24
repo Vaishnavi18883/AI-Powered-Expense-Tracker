@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addExpense } from '../Reducer/Expenseslicer';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addExpense, editExpense } from '../Reducer/Expenseslicer';
 
 const Addexp = () => {
+    const {id}=useParams();
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -15,18 +16,26 @@ const Addexp = () => {
         "Healthcare",
         "Other",
     ];
+    const existingExpense = useSelector((state)=>
+        state.expensesdata.expenses.find(
+            (expense)=>expense.id===Number(id))
+
+    )
     const [formData,setFormData]= useState({
-        name: '',
-        description: '',
-        category: '',
-        amount: 0
+        name:existingExpense ? existingExpense.name :"",
+        description:existingExpense ? existingExpense.description :"",
+        category:existingExpense ? existingExpense.category :"",
+        amount:existingExpense ? existingExpense.amount :"" 
     });
+    useEffect(()=>{
+        if(existingExpense){
+            setFormData(existingExpense);
+        }
+    },[existingExpense])
 
 
     const handleChange =(e)=>{
-        setFormData({
-           
-            
+        setFormData({ 
             ...formData,
             [e.target.name]:e.target.value
         })
@@ -35,13 +44,22 @@ const Addexp = () => {
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
-         console.log(formData);
+      if(id){
+        dispatch(editExpense({
+            id:Number(id),
+            ...formData,
+            amount:Number(formData.amount)
+        }))
+      }else{
         dispatch(addExpense({
             ...formData,
             amount:Number(formData.amount)
         }))
-            navigate('/expenselist');
-    }
+      }
+             navigate('/expenselist');
+        }
+     
+    
     return (
         <div>
             <div className="min-h-screen flex items-center justify-center bg-[url('https://png.pngtree.com/background/20250203/original/pngtree-dollar-sign-blue-money-bag-and-coin-bussiness-background-picture-image_15843391.jpg')] bg-cover bg-center relative px-4">
@@ -108,7 +126,8 @@ const Addexp = () => {
                             <button
                                 type="button"
                                 className="px-5 py-2 rounded-lg border border-blue-400 text-blue-500 hover:bg-blue-100 transition"
-                            >
+                  
+                               onClick={()=> navigate('/expenselist')}>
                                 Cancel
                             </button>
 
@@ -116,7 +135,8 @@ const Addexp = () => {
                                 type="submit"
                                 className="px-5 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-700 transition"
                             >
-                                Create
+                                {id? "Update":"Create"}
+                                
                             </button>
                         </div>
 
