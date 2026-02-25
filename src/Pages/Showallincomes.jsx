@@ -57,9 +57,12 @@ const ShowIncome = () => {
                   <h3 className="font-semibold text-gray-800">
                     {item.incomeName}
                   </h3>
-                  <p className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-600">
                     {item.description}
-                  </p>
+                  </span>
+                  <span className="text-xs text-gray-500 ml-4">
+                    {item.date}
+                  </span>
                 </div>
 
                 {/* Right Section */}
