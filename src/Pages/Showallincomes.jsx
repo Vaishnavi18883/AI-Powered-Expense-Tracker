@@ -16,10 +16,10 @@ const ShowIncome = () => {
   dispatch(deleteIncome(id));
 
  }
- const handleEdit =(id,Updatedata)=>{
-  dispatch(editIncome({id,...Updatedata}))
+//  const handleEdit =(id,Updatedata)=>{
+//   dispatch(editIncome({id,...Updatedata}))
 
- }
+//  }
   return (
     <div className="min-h-screen bg-[url('https://c1.wallpaperflare.com/preview/969/336/23/money-finance-business-financial.jpg')] bg-cover bg-center p-6">
       <div className="max-w-5xl mx-auto">
@@ -34,6 +34,7 @@ const ShowIncome = () => {
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Income
             </h2>
+            
             <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm">
              <Link to='/add-income'> + Add Income</Link>
             </button>

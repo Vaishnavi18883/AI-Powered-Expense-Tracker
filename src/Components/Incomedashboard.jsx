@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { use } from 'react'
 import Sidebar from './Sidebar'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Incomedashboard = () => {
+const incomes = useSelector((state)=> state.incomesdata.incomes);
+
+const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
   return (
     <div>
       <div className="flex h-screen bg-gray-100">
@@ -19,12 +23,12 @@ const Incomedashboard = () => {
               {/* Cards */}
               <div className="bg-white p-4 rounded shadow">
                 <h3 className="font-semibold">Total Income</h3>
-                <p className="text-2xl mt-2">₹11,000</p>
+                <p className="text-2xl mt-2">{totalIncome}</p>
               </div>
 
-              <div className="bg-white p-4 rounded shadow">
+              <div className="bg-white p-3 rounded shadow">
                 <h3 className="font-semibold">No Of Income</h3>
-                <p className="text-2xl mt-2">2</p>
+                <p className="text-2xl mt-2">{incomes.length}</p>
               </div>
 
               <div className="flex flex-col p-4 rounded-lg gap-4 w-48">
