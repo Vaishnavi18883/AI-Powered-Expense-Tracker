@@ -26,7 +26,8 @@ const Addincome = () => {
         incomeName: existingIncome ? existingIncome.incomeName : "",
         description: existingIncome ? existingIncome.description : "",
         category: existingIncome ? existingIncome.category : "",
-        amount: existingIncome ? existingIncome.amount : ""
+        amount: existingIncome ? existingIncome.amount : "",
+        date: existingIncome ? existingIncome.date : ""
     })
     useEffect(() => {
     if (existingIncome) {
@@ -121,6 +122,9 @@ return (
                             </option>
                         ))}
                     </select>
+                    <label className='text-sm font-medium text-white'>
+                        Date
+                    </label>
 
                     <label className="text-sm font-medium text-white">
                         Amount

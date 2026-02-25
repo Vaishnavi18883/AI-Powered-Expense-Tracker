@@ -25,7 +25,8 @@ const Addexp = () => {
         name:existingExpense ? existingExpense.name :"",
         description:existingExpense ? existingExpense.description :"",
         category:existingExpense ? existingExpense.category :"",
-        amount:existingExpense ? existingExpense.amount :"" 
+        amount:existingExpense ? existingExpense.amount :"",
+        date:existingExpense ? existingExpense.date :""
     });
     useEffect(()=>{
         if(existingExpense){
@@ -62,11 +63,11 @@ const Addexp = () => {
     
     return (
         <div>
-            <div className="min-h-screen flex items-center justify-center bg-[url('https://png.pngtree.com/background/20250203/original/pngtree-dollar-sign-blue-money-bag-and-coin-bussiness-background-picture-image_15843391.jpg')] bg-cover bg-center relative px-4">
+            <div className="min-h-screen flex items-center justify-center bg-[url('https://png.pngtree.com/background/20250203/original/pngtree-dollar-sign-blue-money-bag-and-coin-bussiness-background-picture-image_15843391.jpg')] bg-cover bg-center relative px-2">
 
-                <div className="w-full max-w-md bg-white/30 backdrop-blur-sm shadow-xl rounded-2xl p-8 border border-blue-100 transition-all duration-300 hover:scale-[1.01]">
+                <div className="w-full max-w-md bg-white/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 border border-blue-100 transition-all duration-300 hover:scale-[1.01]">
 
-                    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
                         <h2 className="text-2xl font-bold text-blue-700 text-center">
                             Add Expenses
@@ -111,6 +112,16 @@ const Addexp = () => {
                             ))}
                         </select>
                         <label className="text-sm font-medium text-white">
+                            Date
+                        </label>
+                        <input
+                        type='date'
+                        name='date'
+                        className='px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-current-color'
+                        value={formData.date}
+                        onChange={handleChange}
+                        />
+                        <label className="text-sm font-medium text-white">
                             Amount
                         </label>
                         <input
@@ -141,12 +152,12 @@ const Addexp = () => {
                         </div>
 
                     </form>
-                           <p>
+                           {/* <p>
                             {formData.name},
                             {formData.description},
                             {formData.category},
                             {formData.amount}
-                           </p>
+                           </p> */}
                 </div>
               
 

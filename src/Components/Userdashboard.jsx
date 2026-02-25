@@ -1,7 +1,13 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import { useSelector } from "react-redux";
 
 const Userdashboard = () => {
+const expenses = useSelector((state)=> state.expensesdata.expenses);
+const totalExpenses = expenses.reduce((total,item)=> total+item.amount,0);
+const incomes = useSelector((state)=> state.incomesdata.incomes);
+const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
+const remainingAmt = totalIncome - totalExpenses;
   return (
     <div className="flex h-screen bg-gray-100">
 
@@ -25,7 +31,7 @@ const Userdashboard = () => {
             {/* Cards */}
             <div className="bg-white p-4 rounded shadow">
               <h3 className="font-semibold">Total Expenses</h3>
-              <p className="text-2xl mt-2">₹12,000</p>
+              <p className="text-2xl mt-2">₹{totalExpenses}</p>
             </div>
 
             <div className="bg-white p-4 rounded shadow">
@@ -35,7 +41,7 @@ const Userdashboard = () => {
 
             <div className="bg-white p-4 rounded shadow">
               <h3 className="font-semibold">Savings</h3>
-              <p className="text-2xl mt-2">₹7,500</p>
+              <p className="text-2xl mt-2">₹{remainingAmt}</p>
             </div>
 
           </div>

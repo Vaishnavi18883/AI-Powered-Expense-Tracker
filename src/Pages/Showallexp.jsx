@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteExpense, editExpense } from "../Reducer/Expenseslicer";
+import { deleteExpense } from "../Reducer/Expenseslicer";
 
 const ShowExpenses = () => {
   const expenseData = useSelector((state) => state.expensesdata.expenses);
@@ -57,9 +57,12 @@ const ShowExpenses = () => {
                     <h3 className="font-semibold text-gray-800">
                       {item.name}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500">
                       {item.description}
-                    </p>
+                    </span>
+                    <span className="text-xs text-gray-400 ml-4">
+                      {item.date}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-6">

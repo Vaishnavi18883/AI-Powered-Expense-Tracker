@@ -1,8 +1,15 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Expdashboard = () => {
+  const incomes = useSelector((state)=> state.incomesdata.incomes);
+  const expenses= useSelector((state)=> state.expensesdata.expenses);
+
+  const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
+  const totalExpenses = expenses.reduce((total,item)=> total+item.amount,0);
+  const remainingAmt = totalIncome - totalExpenses
   return (
     <div>
         <div className="flex h-screen bg-gray-100">
@@ -19,16 +26,16 @@ const Expdashboard = () => {
               {/* Cards */}
               <div className="bg-white p-4 rounded shadow">
                 <h3 className="font-semibold">Total Income</h3>
-                <p className="text-2xl mt-2">₹11,000</p>
+                <p className="text-2xl mt-2">₹{totalIncome}</p>
               </div>
 
               <div className="bg-white p-4 rounded shadow">
                 <h3 className="font-semibold">Total Expenses</h3>
-                <p className="text-2xl mt-2">₹110002</p>
+                <p className="text-2xl mt-2">₹{totalExpenses}</p>
               </div>
               <div className="bg-white p-4 rounded shadow">
                 <h3 className="font-semibold">Remaining Amount</h3>
-                <p className="text-2xl mt-2">₹110002</p>
+                <p className="text-2xl mt-2">₹{remainingAmt}</p>
               </div>
 
 
@@ -45,7 +52,8 @@ const Expdashboard = () => {
                      hover:bg-blue-600 
                      transition-all duration-300 
                      shadow-md hover:shadow-lg">
-                  Show Expenses
+                  
+                  <Link to='/expenselist'>Show Expenses</Link>
                 </button>
               </div>
 
