@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link , useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteIncome, editIncome } from "../Reducer/Incomeslicer";
+import { deleteIncome} from "../Reducer/Incomeslicer";
 
 
 
@@ -16,10 +16,7 @@ const ShowIncome = () => {
   dispatch(deleteIncome(id));
 
  }
-//  const handleEdit =(id,Updatedata)=>{
-//   dispatch(editIncome({id,...Updatedata}))
 
-//  }
   return (
     <div className="min-h-screen bg-[url('https://c1.wallpaperflare.com/preview/969/336/23/money-finance-business-financial.jpg')] bg-cover bg-center p-6">
       <div className="max-w-5xl mx-auto">
