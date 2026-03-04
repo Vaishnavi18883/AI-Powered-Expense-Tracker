@@ -7,6 +7,7 @@ const Incomedashboard = () => {
 const incomes = useSelector((state)=> state.incomesdata.incomes);
 
 const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
+
   return (
     <div>
       <div className="flex h-screen bg-gray-100">
@@ -46,6 +47,7 @@ const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
                      shadow-md hover:shadow-lg">
                  <Link to='/showallincome'>Show Incomes</Link>
                 </button>
+                
               </div>
 
               <div className='border-2 h-60 w-3xl'>

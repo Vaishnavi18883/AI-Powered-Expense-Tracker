@@ -71,7 +71,7 @@ console.log(filteredData, "filtered data");
 
         <div className="bg-white/20 backdrop-blur-sm rounded-2xl shadow-md p-6">
 
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-6 ">
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Expenses
             </h2>
@@ -118,15 +118,19 @@ console.log(filteredData, "filtered data");
                   className="flex justify-between items-center bg-red-50/40 p-4 rounded-xl shadow-sm"
                 >
                   <div>
-                    <h3 className="font-semibold text-gray-800">
+                    <h3 className="font-semibold text-lg text-gray-800">
                       {item.name}
                     </h3>
-                    <span className="text-sm text-gray-500">
+                    {/* <span className="text-sm text-gray-500">
                       {item.description}
-                    </span>
+                    </span> */}
+                    <span className="text-base  text-gray-500 ml-2">
+                      {item.category}
+                      </span>
                     <span className="text-xs text-gray-400 ml-4">
                       {item.date}
                     </span>
+                    
                   </div>
 
                   <div className="flex items-center gap-6">

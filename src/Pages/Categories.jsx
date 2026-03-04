@@ -1,7 +1,8 @@
 import { useState } from "react";
+import{motion} from "framer-motion";  
 import Sidebar from "../Components/Sidebar";
-import { FaMoneyBillWave, FaBriefcase, FaChartLine } from "react-icons/fa";
-import { MdFastfood, MdHome, MdTravelExplore, MdShoppingCart, MdReceipt } from "react-icons/md";
+import { FaMoneyBillWave, FaBriefcase, FaChartLine,FaLaptopCode, FaEllipsisH  } from "react-icons/fa";
+import { MdFastfood, MdTravelExplore, MdReceipt,MdLocalMovies,MdHealthAndSafety,MdCategory } from "react-icons/md";
 
 
 const Categories = () => {
@@ -11,16 +12,50 @@ const Categories = () => {
     { title: "Salary", description: "Monthly income from job.",icon: <FaMoneyBillWave className="text-green-500 text-2xl"/>},
     { title: "Business", description: "Profit from business.",icon: <FaBriefcase className="text-blue-500 text-2xl" />},
     { title: "Investments", description: "Returns from stocks & mutual funds.", icon: <FaChartLine className="text-purple-500 text-2xl" /> },
+    {
+    title: "Freelancing",
+    description: "Income earned from freelance projects.",
+    icon: <FaLaptopCode className="text-orange-500 text-2xl" />
+  },
+  {
+    title: "Other",
+    description: "Miscellaneous or other income sources.",
+    icon: <FaEllipsisH className="text-gray-500 text-2xl" />
+  }
   ];
 
   const expenseCategories = [
-    { title: "Food", description: "Groceries and dining expenses.", icon: <MdFastfood className="text-red-500 text-2xl" /> },
-    { title: "Rent", description: "House rent or accommodation.",icon: <MdHome className="text-yellow-500 text-2xl" />},
-    { title: "Travel", description: "Transport and trip expenses.", icon: <MdTravelExplore className="text-indigo-500 text-2xl" /> },
-    { title: "Shopping", description: "Clothes, gadgets, etc.", icon: <MdShoppingCart className="text-pink-500 text-2xl" />},
-    { title: "Bills", description: "Electricity, water, internet.", icon: <MdReceipt className="text-gray-500 text-2xl" />},
-  ];
-
+  {
+    title: "Food",
+    description: "Groceries and dining expenses.",
+    icon: <MdFastfood className="text-red-500 text-2xl" />
+  },
+  {
+    title: "Transportation",
+    description: "Travel, fuel, and commuting costs.",
+    icon: <MdTravelExplore className="text-indigo-500 text-2xl" />
+  },
+  {
+    title: "Entertainment",
+    description: "Movies, outings, and fun activities.",
+    icon: <MdLocalMovies className="text-purple-500 text-2xl" />
+  },
+  {
+    title: "Utilities",
+    description: "Electricity, water, internet, etc.",
+    icon: <MdReceipt className="text-pink-500 text-2xl" />
+  },
+  {
+    title: "Healthcare",
+    description: "Medical and health-related expenses.",
+    icon: <MdHealthAndSafety className="text-green-500 text-2xl" />
+  },
+  {
+    title: "Other",
+    description: "Miscellaneous expenses.",
+    icon: <MdCategory className="text-gray-500 text-2xl" />
+  }
+];
   const categories =
     activeTab === "income" ? incomeCategories : expenseCategories;
 
@@ -59,11 +94,16 @@ const Categories = () => {
       </div>
 
       {/* Category Cards */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-4"  
+      >
         {categories.map((item, index) => (
-          <div
+          <motion.div
             key={index}
             className="p-4 border rounded-xl shadow hover:shadow-lg transition duration-300"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            whileHover={{ scale: 1.05 }}
           >
             <div>{item.icon}</div>
 
@@ -74,7 +114,7 @@ const Categories = () => {
               {item.description}
             </p>
             
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -31,10 +31,13 @@ console.log(incomeData);
 
 // write a function to handle change in select option and filter the income data based on category and show the filtered data in the UI
  const [filteredData, setFilteredData] = useState(incomeData);
+ const [categoryFilter, setCategoryFilter] = useState('');
+ const [dateFilter, setDateFilter] = useState('');
  console.log(filteredData,"filtered data");
 
  const handleChange = (e)=>{  
   const category = e.target.value;
+  setCategoryFilter(category);
   if(category === ''){
     setFilteredData(incomeData);
   }
@@ -48,6 +51,7 @@ console.log(incomeData);
   // write a function to handle change in date and filter the income data based on date and show the filtered data in the UI
  const handleDateChange = (e)=>{
   const date = e.target.value;
+  setDateFilter(date);
   if(date === ''){
     setFilteredData(incomeData);
   }
@@ -90,6 +94,7 @@ const handleResetFilter = ()=>{
            <select
               className="border border-gray-300 rounded-xl p-2 text-sm"
               onChange={handleChange}
+              value={categoryFilter}
             >
               <option value="">All Categories</option>
               {incomeData.map((item) => (
@@ -99,14 +104,19 @@ const handleResetFilter = ()=>{
               ))}
             </select>
 
-       <input type="date" onChange={handleDateChange} className="border border-gray-300 rounded-xl p-2 text-sm" />
+       <input type="date" 
+       onChange={handleDateChange}
+       value={dateFilter}
+       className="border border-gray-300 rounded-xl p-2 text-sm" />
 
 
       {/* reset filter button */}
-      <button onClick={handleResetFilter} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm">
+      <button onClick={handleResetFilter} 
+    
+      className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm">
         Reset Filter
       </button>
-
+                         
 
 
 
@@ -129,13 +139,13 @@ const handleResetFilter = ()=>{
 
                 {/* Left Section */}
                 <div>
-                  <h3 className="font-semibold text-gray-800">
+                  <h3 className="font-semibold text-lg text-gray-800">
                     {item.incomeName}
                   </h3>
-                  <span className="text-sm text-gray-600">
-                    {item.description}
+                  <span className="text-base text-gray-500">
+                    {item.category}
                   </span>
-                  <span className="text-xs text-gray-500 ml-4">
+                  <span className="text-xs text-gray-400 ml-4">
                     {item.date}
                   </span>
                 </div>
