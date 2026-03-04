@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link , useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,14 +8,69 @@ import { deleteIncome} from "../Reducer/Incomeslicer";
 
 const ShowIncome = () => {
   const incomeData = useSelector((state) => state.incomesdata.incomes);
- const dispatch = useDispatch();
- const navigate = useNavigate();
+  
+console.log(incomeData); 
+
+
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+ 
+
+  
+
 
 
  const handleDelete = (id)=>{
   dispatch(deleteIncome(id));
 
  }
+
+
+
+
+// write a function to handle change in select option and filter the income data based on category and show the filtered data in the UI
+ const [filteredData, setFilteredData] = useState(incomeData);
+ console.log(filteredData,"filtered data");
+
+ const handleChange = (e)=>{  
+  const category = e.target.value;
+  if(category === ''){
+    setFilteredData(incomeData);
+  }
+  else{
+    const filtered = incomeData.filter((item)=> item.category === category);
+    setFilteredData(filtered);
+  }
+  }
+
+
+  // write a function to handle change in date and filter the income data based on date and show the filtered data in the UI
+ const handleDateChange = (e)=>{
+  const date = e.target.value;
+  if(date === ''){
+    setFilteredData(incomeData);
+  }
+  else{
+    const filtered = incomeData.filter((item)=> item.date === date);
+    setFilteredData(filtered);
+  }
+
+}
+
+
+// i want reset filter button to reset the filter and show all the data in the UI
+const handleResetFilter = ()=>{
+  setFilteredData(incomeData);
+}
+
+
+
+
+  
+
+
+
 
   return (
     <div className="min-h-screen bg-[url('https://c1.wallpaperflare.com/preview/969/336/23/money-finance-business-financial.jpg')] bg-cover bg-center p-6">
@@ -31,7 +86,30 @@ const ShowIncome = () => {
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Income
             </h2>
-            
+
+           <select
+              className="border border-gray-300 rounded-xl p-2 text-sm"
+              onChange={handleChange}
+            >
+              <option value="">All Categories</option>
+              {incomeData.map((item) => (
+                <option key={item.id} value={item.category}>
+                  {item.category}
+                </option>
+              ))}
+            </select>
+
+       <input type="date" onChange={handleDateChange} className="border border-gray-300 rounded-xl p-2 text-sm" />
+
+
+      {/* reset filter button */}
+      <button onClick={handleResetFilter} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm">
+        Reset Filter
+      </button>
+
+
+
+
             <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm">
              <Link to='/add-income'> + Add Income</Link>
             </button>
@@ -39,7 +117,7 @@ const ShowIncome = () => {
 
           <div className="space-y-4">
 
-            {incomeData.map((item, index) => (
+            {filteredData.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 10 }}

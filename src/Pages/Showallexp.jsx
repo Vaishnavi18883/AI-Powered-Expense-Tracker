@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,19 @@ const ShowExpenses = () => {
   //   dispatch(editExpense({ id, ...Updatedata }))
   // }
 
+  const [filteredData, setFilteredData] = useState(expenseData);
+console.log(filteredData, "filtered data");
+  const handleChange = (e)=>{
+    const category = e.target.value;
+    if(category === ''){
+      setFilteredData(expenseData);
+    }
+    else{
+      const filtered = expenseData.filter((item)=>item.category === category);
+      setFilteredData(filtered)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[url('https://img.freepik.com/premium-photo/personal-expenses-concept-financial-analysis-background-golden-coins-pile-icons_488220-465.jpg?w=2000')] bg-cover bg-center p-6">
       <div className="max-w-5xl mx-auto">
@@ -32,6 +45,14 @@ const ShowExpenses = () => {
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Expenses
             </h2>
+              <select onChange={handleChange} className="border border-gray-300 rounded-xl p-2 text-sm">      
+              <option value="">All Categories</option>
+              {expenseData.map((item)=>(
+                <option key={item.id} value={item.category}>
+                  {item.category}
+                  </option>
+               ))}
+              </select>
             <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm"
               onClick={() => navigate('/add-expenses')}>
               + Add Expense
