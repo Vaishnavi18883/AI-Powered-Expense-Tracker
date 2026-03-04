@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,9 +17,15 @@ const ShowExpenses = () => {
   // }
 
   const [filteredData, setFilteredData] = useState(expenseData);
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
+//   useEffect(() => {
+//   setFilteredData(expenseData);
+// }, [expenseData]);
 console.log(filteredData, "filtered data");
   const handleChange = (e)=>{
     const category = e.target.value;
+    setCategoryFilter(category);
     if(category === ''){
       setFilteredData(expenseData);
     }
@@ -27,7 +33,31 @@ console.log(filteredData, "filtered data");
       const filtered = expenseData.filter((item)=>item.category === category);
       setFilteredData(filtered)
     }
+
+  }  
+
+  const  handleDateChange = (e)=>{
+    const date = e.target.value;
+    setDateFilter(date);
+    if(date === ''){
+      setFilteredData(expenseData);
+    }
+    else{
+      const filtered = expenseData.filter((item)=> item.date === date);
+      setFilteredData(filtered);
+    }
+
   }
+
+ const handleResetFilter = () => {
+  setCategoryFilter('')
+  setDateFilter('')
+  setFilteredData(expenseData);
+ }
+
+
+    
+  
 
   return (
     <div className="min-h-screen bg-[url('https://img.freepik.com/premium-photo/personal-expenses-concept-financial-analysis-background-golden-coins-pile-icons_488220-465.jpg?w=2000')] bg-cover bg-center p-6">
@@ -45,7 +75,9 @@ console.log(filteredData, "filtered data");
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Expenses
             </h2>
-              <select onChange={handleChange} className="border border-gray-300 rounded-xl p-2 text-sm">      
+              <select onChange={handleChange} 
+              value={categoryFilter}
+              className="border border-gray-300 rounded-xl p-2 text-sm">      
               <option value="">All Categories</option>
               {expenseData.map((item)=>(
                 <option key={item.id} value={item.category}>
@@ -53,6 +85,17 @@ console.log(filteredData, "filtered data");
                   </option>
                ))}
               </select>
+              <input type= 'date' 
+              value={dateFilter}
+              onChange={handleDateChange}
+              className="border border-gray-300 rounded-xl p-2 text-sm"/>
+              
+
+              <button className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm"
+              onClick={handleResetFilter}>
+                Reset Filter
+              </button>
+
             <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm"
               onClick={() => navigate('/add-expenses')}>
               + Add Expense
@@ -60,12 +103,12 @@ console.log(filteredData, "filtered data");
           </div>
 
           <div className="space-y-4">
-            {expenseData.length === 0 ? (
+            {filteredData.length === 0 ? (
               <p className="text-center text-gray-500 py-6">
                 No expenses added yet.
               </p>
             ) : (
-              expenseData.map((item, index) => (
+              filteredData.map((item, index) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, y: 20 }}
