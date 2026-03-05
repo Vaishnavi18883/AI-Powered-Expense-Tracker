@@ -1,80 +1,89 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteIncome} from "../Reducer/Incomeslicer";
-
-
+import { deleteIncome } from "../Reducer/Incomeslicer";
 
 const ShowIncome = () => {
+
   const incomeData = useSelector((state) => state.incomesdata.incomes);
-  
-console.log(incomeData); 
-
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
 
-  
+  const handleDelete = (id) => {
+    dispatch(deleteIncome(id));
+  };
 
+  // Filters
+  const [filteredData, setFilteredData] = useState(incomeData);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
- const handleDelete = (id)=>{
-  dispatch(deleteIncome(id));
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
- }
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
-// write a function to handle change in select option and filter the income data based on category and show the filtered data in the UI
- const [filteredData, setFilteredData] = useState(incomeData);
- const [categoryFilter, setCategoryFilter] = useState('');
- const [dateFilter, setDateFilter] = useState('');
- console.log(filteredData,"filtered data");
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
- const handleChange = (e)=>{  
-  const category = e.target.value;
-  setCategoryFilter(category);
-  if(category === ''){
-    setFilteredData(incomeData);
-  }
-  else{
-    const filtered = incomeData.filter((item)=> item.category === category);
+  // Category filter
+  const handleChange = (e) => {
+    const category = e.target.value;
+    setCategoryFilter(category);
+
+    let filtered = incomeData;
+
+    if (category !== "") {
+      filtered = incomeData.filter((item) => item.category === category);
+    }
+
     setFilteredData(filtered);
-  }
-  }
+    setCurrentPage(1);
+  };
 
+  // Date filter
+  const handleDateChange = (e) => {
+    const date = e.target.value;
+    setDateFilter(date);
 
-  // write a function to handle change in date and filter the income data based on date and show the filtered data in the UI
- const handleDateChange = (e)=>{
-  const date = e.target.value;
-  setDateFilter(date);
-  if(date === ''){
-    setFilteredData(incomeData);
-  }
-  else{
-    const filtered = incomeData.filter((item)=> item.date === date);
+    let filtered = incomeData;
+
+    if (date !== "") {
+      filtered = incomeData.filter((item) => item.date === date);
+    }
+
     setFilteredData(filtered);
-  }
+    setCurrentPage(1);
+  };
 
-}
-
-
-// i want reset filter button to reset the filter and show all the data in the UI
-const handleResetFilter = ()=>{
-  setFilteredData(incomeData);
-}
-
-
-
-
-  
-
-
-
+  // Reset filter
+  const handleResetFilter = () => {
+    setFilteredData(incomeData);
+    setCategoryFilter("");
+    setDateFilter("");
+    setCurrentPage(1);
+  };
 
   return (
     <div className="min-h-screen bg-[url('https://c1.wallpaperflare.com/preview/969/336/23/money-finance-business-financial.jpg')] bg-cover bg-center p-6">
@@ -86,12 +95,14 @@ const handleResetFilter = ()=>{
 
         <div className="bg-white/20 backdrop-blur-sm rounded-2xl shadow-md p-6">
 
-          <div className="flex justify-between items-center mb-6">
+          {/* Filters */}
+          <div className="flex justify-between items-center mb-6 flex-wrap gap-3">
+
             <h2 className="text-xl font-semibold text-gray-800">
               Recent Income
             </h2>
 
-           <select
+            <select
               className="border border-gray-300 rounded-xl p-2 text-sm"
               onChange={handleChange}
               value={categoryFilter}
@@ -104,53 +115,58 @@ const handleResetFilter = ()=>{
               ))}
             </select>
 
-       <input type="date" 
-       onChange={handleDateChange}
-       value={dateFilter}
-       className="border border-gray-300 rounded-xl p-2 text-sm" />
+            <input
+              type="date"
+              onChange={handleDateChange}
+              value={dateFilter}
+              className="border border-gray-300 rounded-xl p-2 text-sm"
+            />
 
-
-      {/* reset filter button */}
-      <button onClick={handleResetFilter} 
-    
-      className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm">
-        Reset Filter
-      </button>
-                         
-
-
+            <button
+              onClick={handleResetFilter}
+              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm"
+            >
+              Reset Filter
+            </button>
 
             <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm">
-             <Link to='/add-income'> + Add Income</Link>
+              <Link to="/add-income">+ Add Income</Link>
             </button>
+
           </div>
+
+          {/* Income List */}
 
           <div className="space-y-4">
 
-            {filteredData.map((item, index) => (
+            {currentItems.map((item, index) => (
+
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 2 }}
-                transition={{ delay: index * 0.30 }}
+                transition={{ delay: index * 0.3 }}
                 whileHover={{ scale: 1.03 }}
                 className="flex justify-between items-center bg-green-50/40 p-4 rounded-xl shadow-sm"
               >
 
-                {/* Left Section */}
+                {/* Left */}
                 <div>
                   <h3 className="font-semibold text-lg text-gray-800">
                     {item.incomeName}
                   </h3>
+
                   <span className="text-base text-gray-500">
                     {item.category}
                   </span>
+
                   <span className="text-xs text-gray-400 ml-4">
                     {item.date}
                   </span>
                 </div>
 
-                {/* Right Section */}
+                {/* Right */}
+
                 <div className="flex items-center gap-6">
 
                   <p className="text-green-600 font-bold text-lg">
@@ -158,11 +174,12 @@ const handleResetFilter = ()=>{
                   </p>
 
                   <div className="flex gap-2">
+
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg"
-                      onClick={()=> navigate(`/edit-income/${item.id}`)}
+                      onClick={() => navigate(`/edit-income/${item.id}`)}
                     >
                       Edit
                     </motion.button>
@@ -171,15 +188,54 @@ const handleResetFilter = ()=>{
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-3 py-1 text-sm bg-red-500 text-white rounded-lg"
-                      onClick={()=>handleDelete(item.id)}
+                      onClick={() => handleDelete(item.id)}
                     >
                       Delete
                     </motion.button>
+
                   </div>
 
                 </div>
+
               </motion.div>
+
             ))}
+
+          </div>
+
+          {/* Pagination */}
+
+          <div className="flex justify-center items-center gap-3 mt-6">
+
+            <button
+              onClick={prevPage}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-gray-300 rounded-lg"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => paginate(index + 1)}
+                className={`px-3 py-1 rounded-lg ${
+                  currentPage === index + 1
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 bg-gray-300 rounded-lg"
+            >
+              Next
+            </button>
 
           </div>
 
