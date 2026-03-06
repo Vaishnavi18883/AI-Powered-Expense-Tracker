@@ -12,6 +12,7 @@ import Categories from './Pages/Categories'
 import Showallincomes from './Pages/Showallincomes'
 import Showallexp from './Pages/Showallexp'
 
+
 const App = () => {
   return (
     <div>

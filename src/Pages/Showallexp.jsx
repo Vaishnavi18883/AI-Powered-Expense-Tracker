@@ -19,9 +19,20 @@ const ShowExpenses = () => {
   const [filteredData, setFilteredData] = useState(expenseData);
   const [categoryFilter, setCategoryFilter] = useState('');
   const [dateFilter, setDateFilter] = useState('');
-//   useEffect(() => {
-//   setFilteredData(expenseData);
-// }, [expenseData]);
+
+
+  // Pagiantion
+  const[currentPage, setCurrentPage]= useState(1);
+  const itemsPerPage = 3;
+
+ const indexOfLastItem = currentPage * itemsPerPage;
+ const indexOfFirstItem = indexOfLastItem- itemsPerPage;
+
+ const currentItems = filteredData.slice(indexOfFirstItem,indexOfLastItem);
+ const totalPages = Math.ceil(filteredData.length/itemsPerPage)
+
+// ...... const paginate =(page)
+
 console.log(filteredData, "filtered data");
   const handleChange = (e)=>{
     const category = e.target.value;

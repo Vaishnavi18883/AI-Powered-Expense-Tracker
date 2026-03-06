@@ -2,6 +2,8 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import ExpenseChart from '../Charts/ExpenseChart'
+
 
 const Expdashboard = () => {
   const incomes = useSelector((state)=> state.incomesdata.incomes);
@@ -57,8 +59,8 @@ const Expdashboard = () => {
                 </button>
               </div>
 
-              <div className='border-2 h-60 w-3xl'>
-                graph
+              <div className=' h-60 w-3xl shadow-2xl '>
+                <ExpenseChart/>
               </div>
 
 

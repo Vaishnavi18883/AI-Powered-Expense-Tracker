@@ -8,6 +8,14 @@ const totalExpenses = expenses.reduce((total,item)=> total+item.amount,0);
 const incomes = useSelector((state)=> state.incomesdata.incomes);
 const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
 const remainingAmt = totalIncome - totalExpenses;
+
+
+
+
+
+
+
+
   return (
     <div className="flex h-screen bg-gray-100">
 
