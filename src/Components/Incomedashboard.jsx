@@ -1,7 +1,8 @@
-import React, { use } from 'react'
+import React from 'react'
 import Sidebar from './Sidebar'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import IncomeChart from '../Charts/IncomeChart'
 
 const Incomedashboard = () => {
 const incomes = useSelector((state)=> state.incomesdata.incomes);
@@ -51,7 +52,7 @@ const totalIncome = incomes.reduce((total,item)=> total+ item.amount,0);
               </div>
 
               <div className='border-2 h-60 w-3xl'>
-                graph
+                <IncomeChart/>
               </div>
 
 

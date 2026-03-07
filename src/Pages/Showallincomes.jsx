@@ -44,6 +44,7 @@ const ShowIncome = () => {
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      
     }
   };
 
@@ -232,6 +233,7 @@ const ShowIncome = () => {
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages}
+              
               className="px-3 py-1 bg-gray-300 rounded-lg"
             >
               Next
