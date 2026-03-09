@@ -11,6 +11,7 @@ import Expdashboard from './Components/Expdashboard'
 import Categories from './Pages/Categories'
 import Showallincomes from './Pages/Showallincomes'
 import Showallexp from './Pages/Showallexp'
+import Aiplan from './Components/AiPlan'
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
          <Route path='/categories' element={<Categories/>}></Route>
          <Route path='/showallincome' element={<Showallincomes/>}></Route>
           <Route path='/expenselist' element={<Showallexp/>}></Route>
+          <Route path='/aiplan' element ={<Aiplan/>}></Route>
 
       </Routes>
       </Router>

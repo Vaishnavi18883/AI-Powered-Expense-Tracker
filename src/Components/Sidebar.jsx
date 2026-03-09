@@ -12,6 +12,7 @@ const Sidebar = () => {
           <li className="hover:text-gray-300 cursor-pointer"><Link to={'/expenesdashboard'}>Expenses</Link></li>
           <li className="hover:text-gray-300 cursor-pointer"><Link to={'/incomedashboard'}>Income</Link></li>
           <li className="hover:text-gray-300 cursor-pointer"><Link to={'/categories'}>Categories</Link></li>
+          <li className="hover:text-gray-300 cursor-pointer"><Link to={'/aiplan'}>AI Planer</Link></li>
         
         </ul>
       </aside>
