@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 
 import {
-    chart as ChartJS,
+    Chart as ChartJS,
     CategoryScale,
     LinearScale,
     BarElement,
     ArcElement,
     Tooltip,
     Legend
-}from "chart.js"
+} from "chart.js";
+import { Pie } from "react-chartjs-2"
+
+import './aiplan.css'
 
 
 ChartJS.register(
@@ -23,14 +26,21 @@ ChartJS.register(
 
 const AiPlan = () => {
 
-    const [prompt, setPrompt] = useState('')
+    const [prompt, setPrompt] = useState(`My monthly income is ₹____.
+My monthly expenses are ₹____.
+My current savings are ₹____.
+My financial goal is ______.
+My risk level is ______ (low/medium/high).
+
+Please create a financial plan including savings, investment, and emergency fund.`)
     const [plan, setPlan] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    
 
 
 
-    const apiKey = import.meta.env.GEMINI_API_kEY;
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
 
 
