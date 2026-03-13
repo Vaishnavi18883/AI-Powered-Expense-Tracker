@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import incomegif from '../assets/Gif/income.gif'
+import expgif from '../assets/Gif/money-bag.gif'
+import insights from '../assets/Gif/budgeting.gif'
 
 const Home = () => {
 
@@ -147,7 +150,12 @@ const Home = () => {
           whileHover={{ scale: 1.05, y: -6 }}
           className="bg-white p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-xl font-semibold mb-3">Add Income</h3>
+          {/* <span> */}
+            <span className="flex gap-3 text-xl font-semibold ">
+            < img src={incomegif} alt="income" className="w-10 h-10 drop-shadow-xl/25 rounded-full"/>
+            Add Income</span>
+          {/* </span> */}
+          
           <p>Track salary and other income sources easily.</p>
         </motion.div>
 
@@ -156,7 +164,9 @@ const Home = () => {
           whileHover={{ scale: 1.05, y: -6 }}
           className="bg-white p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-xl font-semibold mb-3">Manage Expenses</h3>
+          <span className="flex gap-3 text-xl font-semibold mb-3">
+             < img src={expgif} alt="expense" className="w-10 h-10 drop-shadow-xl/25 rounded-full"/>
+            Manage Expenses</span>
           <p>Record daily spending and stay within your budget.</p>
         </motion.div>
 
@@ -165,7 +175,9 @@ const Home = () => {
           whileHover={{ scale: 1.05, y: -6 }}
           className="bg-white p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-xl font-semibold mb-3">Smart Insights</h3>
+          <span className=" flex gap-3 text-xl font-semibold mb-3">
+            < img src={insights} alt="expense" className="w-10 h-10 drop-shadow-xl/25 rounded-full"/>
+             Smart Insights</span>
           <p>Understand your financial habits and improve savings.</p>
         </motion.div>
 
