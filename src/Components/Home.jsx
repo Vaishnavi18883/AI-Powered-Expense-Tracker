@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import incomegif from '../assets/Gif/income.gif'
 import expgif from '../assets/Gif/money-bag.gif'
 import insights from '../assets/Gif/budgeting.gif'
-
+import addincome from "../assets/Gif/money.gif"
+import wallet from '../assets/Gif/wallet.gif'
+import chart from '../assets/Gif/evolution.gif'
+import ai from '../assets/Gif/artificial-intelligence.gif'
 const Home = () => {
 
   const sectionVariants = {
@@ -107,12 +110,24 @@ const Home = () => {
               your spending with an easy-to-use dashboard.
             </p>
 
-            <ul className="space-y-3 text-gray-700">
-              <li>✔ Add and manage income sources</li>
-              <li>✔ Track daily expenses</li>
-              <li>✔ Visual charts and insights</li>
-              <li>✔ AI-powered financial suggestions</li>
-            </ul>
+            <div className="space-y-3 text-gray-700 font-semibold">
+              <span className="flex gap-3 ">
+                 < img src={addincome} alt="income" className="w-8 h-8 drop-shadow-xl/25 rounded-full"/>
+                 Add and manage income sources
+                 </span>
+
+              <span className="flex gap-3">
+                < img src={wallet} alt="expenses" className="w-8 h-8 drop-shadow-xl/25 rounded-full"/>
+                Track daily expenses
+                </span>
+              <span className="flex gap-3">
+                <img src={chart} alt="expenses" className="w-8 h-8 drop-shadow-xl/25 rounded-full"/>
+                 Visual charts and insights
+                 </span>
+              <span className="flex gap-3">
+                <img src={ai} alt="expenses" className="w-8 h-8 drop-shadow-xl/25 rounded-full"/>
+                 AI-powered financial suggestions</span>
+            </div>
 
           </motion.div>
 
@@ -148,7 +163,7 @@ const Home = () => {
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -6 }}
-          className="bg-white p-8 rounded-xl shadow-md"
+          className="bg-gray-100 p-8 rounded-xl shadow-md"
         >
           {/* <span> */}
             <span className="flex gap-3 text-xl font-semibold ">
@@ -162,7 +177,7 @@ const Home = () => {
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -6 }}
-          className="bg-white p-8 rounded-xl shadow-md"
+          className="bg-gray-100 p-8 rounded-xl shadow-md"
         >
           <span className="flex gap-3 text-xl font-semibold mb-3">
              < img src={expgif} alt="expense" className="w-10 h-10 drop-shadow-xl/25 rounded-full"/>
@@ -173,7 +188,7 @@ const Home = () => {
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -6 }}
-          className="bg-white p-8 rounded-xl shadow-md"
+          className="bg-gray-100 p-8 rounded-xl shadow-md"
         >
           <span className=" flex gap-3 text-xl font-semibold mb-3">
             < img src={insights} alt="expense" className="w-10 h-10 drop-shadow-xl/25 rounded-full"/>
