@@ -1,17 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
 import incomestoreReducer from "../Reducer/Incomeslicer";
 import expensestoreReducer from "../Reducer/Expenseslicer";
+import userstoreReducer from '../Reducer/Userslicer'
 const loadstate = () => {
     try{
        const incomesfromlocalstorage = localStorage.getItem("incomes");
        const expensesfromlocalstorage = localStorage.getItem("expenses");
+       const usersfromlocalstorage = localStorage.getItem('users')
        return {
         incomesdata:{
             incomes : incomesfromlocalstorage ? JSON.parse(incomesfromlocalstorage) : []
         },
         expensesdata:{
             expenses : expensesfromlocalstorage ? JSON.parse(expensesfromlocalstorage) : []
-        }
+
+        },
+        userdata:{
+            users : usersfromlocalstorage? JSON.parse(usersfromlocalstorage):[]
+        },
        }
     }
     catch (error){
@@ -31,6 +37,10 @@ const savestate = (state)=>{
         "expenses",
         JSON.stringify(state.expensesdata.expenses)
        )
+       localStorage.setItem(
+        "users",
+        JSON.stringify(state.userdata.users)
+       )
 
     }catch(error){
         console.error("Error to save", error);
@@ -41,7 +51,8 @@ const savestate = (state)=>{
 const store = configureStore({
     reducer: {
         incomesdata: incomestoreReducer,
-        expensesdata: expensestoreReducer
+        expensesdata: expensestoreReducer,
+        userdata: userstoreReducer,
     },
     preloadedState: loadstate()
 })

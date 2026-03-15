@@ -42,7 +42,7 @@ const Home = () => {
 
         <div className="space-x-6 font-medium">
           <Link to="/" className="hover:text-indigo-600">Home</Link>
-          <Link to="/userdashboard" className="hover:text-indigo-600">Dashboard</Link>
+          <Link to="/register" className="hover:text-indigo-600">Dashboard</Link>
           <Link to="/login" className="hover:text-indigo-600">Login</Link>
         </div>
       </nav>
