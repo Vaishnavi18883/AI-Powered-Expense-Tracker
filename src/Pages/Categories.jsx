@@ -1,26 +1,37 @@
 import { useState } from "react";
 import{motion} from "framer-motion";  
 import Sidebar from "../Components/Sidebar";
-import { FaMoneyBillWave, FaBriefcase, FaChartLine,FaLaptopCode, FaEllipsisH  } from "react-icons/fa";
-import { MdFastfood, MdTravelExplore, MdReceipt,MdLocalMovies,MdHealthAndSafety,MdCategory } from "react-icons/md";
+import salary from '../assets/Gif/wallet.gif';
+import business from '../assets/Gif/agreement.gif';
+import investment from '../assets/Gif/investment.gif';
+import freelancing from '../assets/Gif/content-creator.gif';
+import other from '../assets/Gif/money.gif'
+import food from '../assets/Gif/food.gif';
+import transport from '../assets/Gif/path.gif';
+import entertainment from '../assets/Gif/cinema.gif';
+import utilities from '../assets/Gif/electric-power.gif';
+import healthcare from '../assets/Gif/healthcare.gif'
+import bill from '../assets/Gif/bill.gif'
 
 
 const Categories = () => {
   const [activeTab, setActiveTab] = useState("income");
 
   const incomeCategories = [
-    { title: "Salary", description: "Monthly income from job.",icon: <FaMoneyBillWave className="text-green-500 text-2xl"/>},
-    { title: "Business", description: "Profit from business.",icon: <FaBriefcase className="text-blue-500 text-2xl" />},
-    { title: "Investments", description: "Returns from stocks & mutual funds.", icon: <FaChartLine className="text-purple-500 text-2xl" /> },
+    { title: "Salary", description: "Monthly income from job.",icon: (<img src={salary} alt="Salary" className="w-8 h-8"/>)},
+    { title: "Business", description: "Profit from business.",icon:(<img src={business} alt="Business" className="w-9 h-9"/>)},
+    { title: "Investments", description: "Returns from stocks & mutual funds.", icon:(<img src={investment} alt="Investment" className="w-9 h-9"/>)},
     {
     title: "Freelancing",
     description: "Income earned from freelance projects.",
-    icon: <FaLaptopCode className="text-orange-500 text-2xl" />
+    icon: (<img src={freelancing} alt="Freelancing" className="w-9 h-9"/>)
+   
   },
   {
     title: "Other",
     description: "Miscellaneous or other income sources.",
-    icon: <FaEllipsisH className="text-gray-500 text-2xl" />
+    icon:(<img src={other} alt="Other Income" className="w-9 h-9"/>)
+    
   }
   ];
 
@@ -28,32 +39,40 @@ const Categories = () => {
   {
     title: "Food",
     description: "Groceries and dining expenses.",
-    icon: <MdFastfood className="text-red-500 text-2xl" />
+    icon:(<img src={food} alt="Food" className="w-10 h-10"/>)
+    
   },
   {
     title: "Transportation",
     description: "Travel, fuel, and commuting costs.",
-    icon: <MdTravelExplore className="text-indigo-500 text-2xl" />
+    icon:(<img src={transport} alt="Transportation" className="w-10 h-10"/>)
+
+
+    
   },
   {
     title: "Entertainment",
     description: "Movies, outings, and fun activities.",
-    icon: <MdLocalMovies className="text-purple-500 text-2xl" />
+    icon:(<img src= {entertainment} alt="Entertainment" className="w-9 h-9"/>)
+   
   },
   {
     title: "Utilities",
     description: "Electricity, water, internet, etc.",
-    icon: <MdReceipt className="text-pink-500 text-2xl" />
+    icon:(<img src={utilities} alt="Utilities" className="w-9 h-9"/>)
+  
   },
   {
     title: "Healthcare",
     description: "Medical and health-related expenses.",
-    icon: <MdHealthAndSafety className="text-green-500 text-2xl" />
+    icon:(<img src={healthcare} alt="Healthcare" className="w-9 h-9"/>)
+
   },
   {
     title: "Other",
     description: "Miscellaneous expenses.",
-    icon: <MdCategory className="text-gray-500 text-2xl" />
+    icon:( <img src={bill} alt="Other Expenses" className="w-9 h-9"/>)
+    
   }
 ];
   const categories =
@@ -105,11 +124,13 @@ const Categories = () => {
             transition={{ delay: index * 0.2 }}
             whileHover={{ scale: 1.05 }}
           >
+            <span className="flex gap-3">
             <div>{item.icon}</div>
 
-            <h3 className="text-lg font-semibold text-gray-800">
+            <h3 className="text-lg font-semibold text-gray-800 ">
               {item.title}
             </h3>
+            </span>
             <p className="text-sm text-gray-600 mt-2">
               {item.description}
             </p>

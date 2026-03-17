@@ -4,43 +4,43 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-  const users = useSelector((state)=>state.userdata.users)
+  const users = useSelector((state) => state.userdata.users)
   const navigate = useNavigate();
 
-  const [formData,setFormData]= useState({
-    username : "",
-    password:""
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
   })
 
-  const [message,setMessage]= useState("")
+  const [message, setMessage] = useState("")
 
-  const handleInput = (e)=>{
+  const handleInput = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   }
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     const validUser = users.find(
-      (user)=>
+      (user) =>
         user.username === formData.username &&
         user.password === formData.password
     )
 
-    if(validUser){
-  localStorage.setItem("loggedUser", JSON.stringify(validUser));
-  setMessage("Login Successful!")
-  navigate("/userdashboard")
+    if (validUser) {
+      localStorage.setItem("loggedUser", JSON.stringify(validUser));
+      setMessage("Login Successful!")
+      navigate("/userdashboard")
 
 
 
 
 
 
-}else{
+    } else {
       setMessage("Invalid Username or Password")
     }
   }
@@ -86,39 +86,14 @@ const Login = () => {
           </p>
 
         </form>
-        {message && 
-          <p className={`text-center mt-4 ${message.includes("Invalid")? "text-red-600" : "text-green-600"}`}>
+        {message &&
+          <p className={`text-center mt-4 ${message.includes("Invalid") ? "text-red-600" : "text-green-600"}`}>
             {message}
           </p>
-        
+
         }
-     
-      
-        
-        
-        
-</div>
-
-        
-
-
-
-     
+      </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   );
 };
