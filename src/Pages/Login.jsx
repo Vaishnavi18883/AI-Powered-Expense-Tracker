@@ -31,9 +31,16 @@ const Login = () => {
     )
 
     if(validUser){
-      setMessage("Login Successful!")
-      navigate("/userdashboard")
-    }else{
+  localStorage.setItem("loggedUser", JSON.stringify(validUser));
+  setMessage("Login Successful!")
+  navigate("/userdashboard")
+
+
+
+
+
+
+}else{
       setMessage("Invalid Username or Password")
     }
   }
@@ -79,16 +86,40 @@ const Login = () => {
           </p>
 
         </form>
-
-        {message && (
-          <p className="text-center text-green-600 mt-4">
+        {message && 
+          <p className={`text-center mt-4 ${message.includes("Invalid")? "text-red-600" : "text-green-600"}`}>
             {message}
           </p>
-        )}
+        
+        }
+     
+      
+        
+        
+        
+</div>
 
-      </div>
+        
 
+
+
+     
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   );
 };
 
