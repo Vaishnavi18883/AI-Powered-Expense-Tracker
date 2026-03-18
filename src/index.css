@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+
+
+/* index.css */
+button {
+  @apply focus:outline-none focus:ring-0;
+}

@@ -48,11 +48,11 @@ transition:0.3s;
 }
 
 textarea:focus{
-border-color:#6366f1;
+/* border-color:#6366f1; */
 box-shadow:0 0 6px rgba(99,102,241,0.3);
 }
 
-button{
+.generateplan{
 background:#6366f1;
 color:white;
 border:none;
@@ -64,14 +64,14 @@ transition:all 0.3s ease;
 }
 
 button:hover{
-background:#4f46e5;
+/* background:#4f46e5; */
 transform:scale(1.05);
 }
 
 .loading{
 text-align:center;
 font-weight:bold;
-color:#6366f1;
+/* color:#6366f1; */
 margin-bottom:20px;
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
+import Incomeexpense from "../Charts/Incomeexpense";
 
 const Userdashboard = () => {
 const expenses = useSelector((state)=> state.expensesdata.expenses);
@@ -34,28 +35,44 @@ const remainingAmt = totalIncome - totalExpenses;
 
         {/* Content */}
         <main className="p-6 flex-1 overflow-y-auto">
-          <div className="grid grid-cols-3 gap-6">
 
-            {/* Cards */}
-            <div className="bg-white p-4 rounded shadow">
-              <h3 className="font-semibold">Total Expenses</h3>
-              <p className="text-2xl mt-2">₹{totalExpenses}</p>
-            </div>
+  {/* Cards */}
+  <div className="grid grid-cols-3 gap-6 mb-6">
 
-            <div className="bg-white p-4 rounded shadow">
-              <h3 className="font-semibold">This Month</h3>
-              <p className="text-2xl mt-2">₹4,500</p>
-            </div>
+    <div className="bg-white p-4 rounded shadow">
+      <h3 className="font-semibold">Total Expenses</h3>
+      <p className="text-2xl mt-2">₹{totalExpenses}</p>
+    </div>
 
-            <div className="bg-white p-4 rounded shadow">
-              <h3 className="font-semibold">Savings</h3>
-              <p className="text-2xl mt-2">₹{remainingAmt}</p>
-            </div>
+    <div className="bg-white p-4 rounded shadow">
+      <h3 className="font-semibold">Total Income</h3>
+      <p className="text-2xl mt-2">₹{totalIncome}</p>
+    </div>
 
-          </div>
-        </main>
+    <div className="bg-white p-4 rounded shadow">
+      <h3 className="font-semibold">Savings</h3>
+      <p className="text-2xl mt-2">₹{remainingAmt}</p>
+    </div>
 
+  </div>
+
+  {/* Chart Section */}
+  <div className="bg-white p-6 rounded shadow">
+
+    <h3 className="text-lg font-semibold mb-4">
+      Income vs Expense Overview
+    </h3>
+
+    <Incomeexpense 
+      incomes={incomes} 
+      expenses={expenses} 
+    />
+
+  </div>
+
+</main>
       </div>
+      
     </div>
   );
 };

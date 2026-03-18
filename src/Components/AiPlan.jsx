@@ -152,7 +152,7 @@ value={prompt}
 onChange={(e)=>setPrompt(e.target.value)}
 />
 
-<button>Generate Plan</button>
+<button className='generateplan'>Generate Plan</button>
 
 </form>
 

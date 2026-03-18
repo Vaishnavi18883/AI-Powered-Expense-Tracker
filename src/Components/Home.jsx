@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-
+<div className="bg-red-500">Test</div>
       {/* Navbar */}
       <nav className="flex justify-between items-center px-10 py-6 bg-white shadow-sm sticky top-0 z-50">
         <h1 className="text-2xl font-bold text-indigo-600">
